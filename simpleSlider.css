@@ -1,6 +1,5 @@
 .slider {
-    height:0;
-    padding:10px 0;
+    height:20px;
     width:200px;
     background-color:#ccc;
     margin:20px auto;
@@ -40,6 +39,5 @@
     left:0;
     top:0;
     width:0;
-    height:0;
-    padding:10px 0;
+    height:20px;
 }
