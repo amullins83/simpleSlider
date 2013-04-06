@@ -1,0 +1,32 @@
+.slider {
+    height:0;
+    padding:2px 0;
+    width:100px;
+    background-color:#ccc;
+    margin:10px auto;
+    position:relative;
+}
+
+.slider .handle {
+    position:absolute;
+    background-color:#bbb;
+    border-radius:5px;
+    width:10px;
+    height:10px;
+    top:-3px;
+    left:0;
+}
+
+.slider:hover .handle, .handle.selected {
+    background-color:white;
+    border:1px solid black;
+}
+
+.slider .fill {
+    position:absolute;
+    left:0;
+    top:0;
+    width:0;
+    height:0;
+    padding:2px 0;
+}

@@ -1,0 +1,13 @@
+body {
+	background-color:#eee;
+}
+
+#result {
+	position:relative;
+	margin:20px auto;
+	background-color:white;
+	color:blue;
+	font-size:60px;
+	font-family:monaco, monospace;
+	padding:20px;
+}
