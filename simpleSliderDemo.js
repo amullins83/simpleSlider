@@ -1,6 +1,6 @@
 $(function() {
-    $("#slide-one").slider();
-	$("#slide-one").slideChange(function(value) {
-		$("#result").text(value);
+    $slideOne = $("#slide-one").slider();
+	$slideOne.slideChange(function(value) {
+		$("#result").text(parseInt(value));
 	});
 });

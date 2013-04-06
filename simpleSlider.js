@@ -1,5 +1,5 @@
 $.fn.slider = function(options) {
-    $self = $(this).addClass("slider");
+    $self = this.addClass("slider");
     if(typeof(options) === "undefined")
         options = {};
     
@@ -9,7 +9,7 @@ $.fn.slider = function(options) {
         value:options.value || 0,
         backgroundColor:options.backgroundColor || "#ccc",
         handleColor:options.handleColor || "#bbb",
-        fillColor:options.fillColor || "#00f"
+        fillColor:options.fillColor || "#00f",
 		onslidechange:options.onslidechange || function() {}
     };
 
@@ -23,9 +23,10 @@ $.fn.slider = function(options) {
         $self.data("value", parseInt($handle.css("left"))/$self.width()*(slideOpts.max-slideOpts.min) + slideOpts.min);
         return slideOpts.value = $self.data("value");
     };
+	$self.onslidechange = slideOpts.onslidechange;
 	$self.slideChange = function(callback) {
 		if(typeof(callback) === "function")
-			slideOpts.onslidechange = callback;
+			$self.onslidechange = callback;
 	};
     $handle = $("<div class='handle'/>").offset({left:$self.calculatePosition()});
     $fill = $("<div class='fill'/>").width($self.calculatePosition()).css({backgroundColor:slideOpts.fillColor});
@@ -44,12 +45,12 @@ $.fn.slider = function(options) {
             else
                 $handle.css({left:leftOffset});
             $fill.width(parseInt($handle.css("left")));
-            $self.calculateValue();
-			slideOpts.onslidechange();
+			$self.onslidechange( $self.calculateValue() );
         });
     });
         $(document).on("mouseup", function() {
             $(document).unbind("mousemove");
             $handle.removeClass("selected");
         });
+		return $self;
 };
