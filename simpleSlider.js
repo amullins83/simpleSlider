@@ -1,5 +1,5 @@
 $.fn.slider = function(options) {
-    $self = this.addClass("slider");
+    var $self = this.addClass("slider");
     if(typeof(options) === "undefined")
         options = {};
     
@@ -16,11 +16,16 @@ $.fn.slider = function(options) {
     if(slideOpts.min === slideOpts.max)
         slideOpts.max++;
 
+	var $handle = $("<div/>");
+	$self.append($handle);
+	$handle.addClass("handle");
+	var halfHandleWidth = $handle.width()/2;
+	$self.handle = $handle.css({left:-halfHandleWidth+$self.offset().left});
     $self.calculatePosition = function() {
-        return $self.width()*((slideOpts.value - slideOpts.min)/(slideOpts.max - slideOpts.min));
+        return $self.width()*((slideOpts.value - slideOpts.min)/(slideOpts.max - slideOpts.min)) - halfHandleWidth;
     };
     $self.calculateValue = function() {
-        $self.data("value", parseInt($handle.css("left"))/$self.width()*(slideOpts.max-slideOpts.min) + slideOpts.min);
+        $self.data("value", (parseInt($handle.css("left"))+$handle.width()/2)/$self.width()*(slideOpts.max-slideOpts.min) + slideOpts.min);
         return slideOpts.value = $self.data("value");
     };
 	$self.onslidechange = slideOpts.onslidechange;
@@ -28,8 +33,8 @@ $.fn.slider = function(options) {
 		if(typeof(callback) === "function")
 			$self.onslidechange = callback;
 	};
-    $handle = $("<div class='handle'/>").offset({left:$self.calculatePosition()});
-    $fill = $("<div class='fill'/>").width($self.calculatePosition()).css({backgroundColor:slideOpts.fillColor});
+    $handle.css({left:$self.calculatePosition()});
+    $fill = $("<div class='fill'/>").width($self.calculatePosition()+halfHandleWidth).css({backgroundColor:slideOpts.fillColor});
     $self.append($fill);
     $self.append($handle);
     
@@ -39,18 +44,21 @@ $.fn.slider = function(options) {
         $(document).bind("mousemove", function(e) {
             var leftOffset = e.pageX - $self.offset().left;
             if(leftOffset < 0)
-                $handle.css({left:0});
+                $handle.css({left:-$handle.width()/2});
             else if(leftOffset > $self.width())
-                $handle.css({left:$self.width()});
+                $handle.css({left:($self.width()-$handle.width()/2)});
             else
-                $handle.css({left:leftOffset});
-            $fill.width(parseInt($handle.css("left")));
+                $handle.css({left:(leftOffset-$handle.width()/2)});
+            $fill.width(parseInt($handle.css("left"))+$handle.width()/2);
 			$self.onslidechange( $self.calculateValue() );
         });
     });
-        $(document).on("mouseup", function() {
+    $(document).on("mouseup", function() {
             $(document).unbind("mousemove");
             $handle.removeClass("selected");
-        });
-		return $self;
+    });
+	
+	
+	
+	return $self;
 };

@@ -2,6 +2,11 @@ body {
 	background-color:#eee;
 }
 
+#main {
+	position:relative;
+	margin:60px auto;
+}
+
 #result {
 	position:relative;
 	margin:20px auto;
@@ -9,8 +14,14 @@ body {
 	color:blue;
 	font-size:60px;
 	font-family:monaco, monospace;
-	padding:20px 20px;
-	width:80px;
-	height:60px;
+	padding:20px;
+	width:120px;
+	height:80px;
 	text-align:center;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
