@@ -15,27 +15,42 @@ $.fn.slider = function(options) {
 		mechanize: options.mechanize || false,
 		thickness: options.thickness || 20,
 		slideLength: options.slideLength || 200,
-		handleRadius: options.handleRadius || 20,
+		handleRadius: options.handleRadius,
 		onslidechange:options.onslidechange || function() {}
-		
     };
 
     if(slideOpts.min === slideOpts.max)
         slideOpts.max++; // Prevents divide by zero on calculate position
-
+	
+	if(slideOpts.value < slideOpts.min)
+		slideOpts.value = slideOpts.min;
+	else if(slideOpts.value > slideOpts.max)
+		slideOpts.value = slideOpts.max;
+	
+	if(typeof(slideOpts.handleRadius) === "undefined")
+		slideOpts.handleRadius = slideOpts.thickness;
+	
 	var $handle = $("<div/>");
 	
 	$handle.addClass("handle").css({
 		backgroundColor:slideOpts.handleColor,
 		borderRadius:slideOpts.handleRadius,
 		width:slideOpts.handleRadius*2,
-		height:slideOpts.handleRadius*2
+		height:slideOpts.handleRadius*2,
+		top: -slideOpts.handleRadius/2
 	});
 	
 	var halfHandleWidth = $handle.width()/2;
 	
 	$self.handle = $handle.css({left:-halfHandleWidth+$self.offset().left});
     
+	
+	$self.css({
+		height:slideOpts.thickness,
+		width:slideOpts.slideLength,
+		backgroundColor:slideOpts.backgroundColor
+	});
+
 	$self.calculatePosition = function() {
         return $self.width()*( (slideOpts.value - slideOpts.min) / 
 								      (slideOpts.max - slideOpts.min) ) - halfHandleWidth;
@@ -50,16 +65,15 @@ $.fn.slider = function(options) {
 	
 	$self.onslidechange = slideOpts.onslidechange;
 	
-	$self.slideChange = function(callback) {
-		if(typeof(callback) === "function")
-			$self.onslidechange = callback;
-	};
+    $handle.css({
+		left:$self.calculatePosition()
+	});
 	
-    $handle.css({left:$self.calculatePosition()});
-    $fill = $("<div class='fill'/>")
+    var $fill = $("<div class='fill'/>")
 				.css({
 					backgroundColor:slideOpts.fillColor,
-					width: $self.calculatePosition() + halfHandleWidth,
+					height:slideOpts.thickness,
+					width: $self.calculatePosition() + halfHandleWidth
 				});
 			
     $self.append($fill);
@@ -101,4 +115,11 @@ $.fn.slider = function(options) {
     });
 	
 	return $self;
+};
+
+$.fn.slideChange = function(callback) {
+	if(typeof(callback) === "function")
+		//this.each(function() {
+			this.onslidechange = callback;
+		//});
 };

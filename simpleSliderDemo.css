@@ -4,10 +4,15 @@ body {
 
 #main {
 	position:relative;
-	margin:60px auto;
+	margin:0 auto;
 }
 
-#result {
+#main > div {
+	margin:60px auto;
+	position:relative;
+}
+
+.result {
 	position:relative;
 	margin:20px auto;
 	background-color:white;
@@ -24,4 +29,21 @@ body {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+h1, h2 {
+	position:relative;
+	margin:0 auto;
+	text-align:center;
+	color:#08a;
+	text-shadow:#068 0 -1px 0, #8ac 0 1px 0;
+	font-family:monaco, monospace;
+}
+
+h1 {
+	font-size:48px;
+}
+
+h2 {
+	font-size:36px;
 }
