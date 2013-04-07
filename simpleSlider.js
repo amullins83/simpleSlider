@@ -32,24 +32,24 @@ $.fn.slider = function(options) {
 	
 	var $handle = $("<div/>");
 	
-	$handle.addClass("handle").css({
-		backgroundColor:slideOpts.handleColor,
-		borderRadius:slideOpts.handleRadius,
-		width:slideOpts.handleRadius*2,
-		height:slideOpts.handleRadius*2,
-		top: -slideOpts.handleRadius/2
-	});
-	
-	var halfHandleWidth = $handle.width()/2;
-	
-	$self.handle = $handle.css({left:-halfHandleWidth+$self.offset().left});
-    
-	
 	$self.css({
 		height:slideOpts.thickness,
 		width:slideOpts.slideLength,
 		backgroundColor:slideOpts.backgroundColor
 	});
+	
+	$handle.addClass("handle").css({
+		backgroundColor:slideOpts.handleColor,
+		borderRadius:slideOpts.handleRadius,
+		width:slideOpts.handleRadius*2,
+		height:slideOpts.handleRadius*2,
+		top: $self.height()/2 - slideOpts.handleRadius,
+	});
+	
+	var halfHandleWidth = $handle.width()/2;
+	
+	$self.handle = $handle.css({left:-halfHandleWidth+$self.offset().left});
+	
 
 	$self.calculatePosition = function() {
         return $self.width()*( (slideOpts.value - slideOpts.min) / 

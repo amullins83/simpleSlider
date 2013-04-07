@@ -32,6 +32,13 @@ $(function() {
 		value:90
 	}));
 	
+	sliderList.push($("#slide-handleHalf").slider({
+		fillColor:"#fff",
+		handleColor:"#000",
+		handleSelectedColor:"#444",
+		handleRadius:10
+	}));
+	
 	for(var i in sliderList)
 		sliderList[i].slideChange(function(value) {
 			this.siblings(".result").text(parseInt(value));
