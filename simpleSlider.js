@@ -12,7 +12,7 @@ $.fn.slider = function(options) {
         handleSelectedColor:options.handleSelectedColor || "#fff",
 		fillColor:options.fillColor || "#00f",
 		vertical: options.vertical || false,
-		mechanize: options.mechanize || false,
+		mechanizeTrigger: options.mechanizeTrigger,
 		thickness: options.thickness || 20,
 		slideLength: options.slideLength || 200,
 		handleRadius: options.handleRadius,
@@ -113,6 +113,30 @@ $.fn.slider = function(options) {
 				backgroundColor:slideOpts.handleColor
 			});
     });
+	
+	if(typeof(slideOpts.mechanizeTrigger) !== "undefined") {
+		$(document).on("change", slideOpts.mechanizeTrigger, function(e) {
+			$target = $(slideOpts.mechanizeTrigger);
+			newValue = $target.val();
+			if(newValue < slideOpts.min) {
+				newValue = slideOpts.min;
+				$target.val(newValue);
+			}
+			else if(newValue > slideOpts.max) {
+				newValue = slideOpts.max;
+				$target.val(newValue);
+			}
+			$self.data("value", newValue);
+			slideOpts.value = newValue;
+			newLeft = $self.calculatePosition();
+			$handle.css({
+				left:newLeft
+			});
+			$fill.css({
+				width: newLeft + $handle.width()/2
+			})
+		});
+	}
 	
 	return $self;
 };

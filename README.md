@@ -68,3 +68,7 @@ look and behavior to fit your site. So far, I have implemented these options:
 - **handleRadius**: Determines the size of the handle (which is circular). Must be a positive integer. Defaults to `thickness`.
 
 - **onslidechange**: The handler function to call whenever the slider is moved. Must be a function, and the default is the empty function (`function() {}`).
+
+- **mechanizeTrigger**: The jQuery selector that identifies the object to whose value the slider will be bound. This allows
+you to automate the slider with input from an outside source. If the outside source supplies input that is not valid (input is greater than max,
+less than min, or not a number), the resulting slider value will be clipped to the min/max for the slider. Non-numeric input results in no change.

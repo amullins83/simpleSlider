@@ -39,6 +39,12 @@ $(function() {
 		handleRadius:10
 	}));
 	
+	sliderList.push($("#slide-mech").slider({
+		fillColor:"red",
+		handleColor:"blue",
+		mechanizeTrigger:"#mechanizer"
+	}));
+	
 	for(var i in sliderList)
 		sliderList[i].slideChange(function(value) {
 			this.siblings(".result").text(parseInt(value));
