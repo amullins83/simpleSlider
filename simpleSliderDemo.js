@@ -50,4 +50,8 @@ $(function() {
 			this.siblings(".result").text(parseInt(value));
 		});
 	
+	sliderList[-1].slideChange(function(value) {
+		$("#mechanizer").val(parseInt(value));	
+	});
+	
 });
