@@ -1,0 +1,129 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Simpleslider</title>
+  <meta name="description" content="A simple slider tool using jQuery">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Simpleslider</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">A simple slider tool using jQuery</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/amullins83/simpleSlider/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/amullins83/simpleSlider/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/amullins83/simpleSlider" class="code">View Simpleslider on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h3>simpleSlider</h3>
+
+<h1></h1>
+
+<p>My own attempt at a jQuery-based slider object</p>
+
+<h2>Installation</h2>
+
+<hr><p>Add these files to your project:</p>
+
+<ul>
+<li><code>simpleSlider.js</code></li>
+<li><code>simpleSlider.css</code></li>
+</ul><p>Link to them in your page:</p>
+
+<pre><code>&lt;link href="simpleSlider.css" rel="stylesheet" type="text/css"/&gt;
+&lt;script src="simpleSlider.js" type="text/javascript"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>This project uses the popular <a href="http://jquery.com">jQuery library</a>. In order to use it, add this line to your page <strong>before</strong> the link to simpleSlider:</p>
+
+<pre><code>&lt;script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>I cannot guarantee that my files will always work with the latest version of jQuery, but if you let me know of any problems, I'll look into it.</p>
+
+<h2>Usage</h2>
+
+<hr><p>Add an empty <code>&lt;div&gt;</code> to your DOM wherever you'd like your slider to go. For example:</p>
+
+<pre><code>&lt;div id="slide-one"&gt;&lt;/div&gt;
+</code></pre>
+
+<p>Now, in your main page script, select it and call <code>.slider()</code> on it:</p>
+
+<pre><code>$("#slide-one").slider();
+</code></pre>
+
+<p>After that, you need to pass a callback to the <code>.slideChange</code> function:</p>
+
+<pre><code>$("#slide-one").slideChange(function(value) {
+      $("#result").text(value);
+});
+</code></pre>
+
+<p>Every time the slider position changes, the callback will be called with an argument equal to the slider's <code>data-value</code> attribute.</p>
+
+<h2>Options</h2>
+
+<hr><p>While the slider example above works, in general you will probably want to adapt the slider's
+look and behavior to fit your site. So far, I have implemented these options:</p>
+
+<ul>
+<li><p><strong>min</strong>: Determines slider's minimum value. Defaults to 0.</p></li>
+<li><p><strong>max</strong>: Determines slider's maximum value. Defaults to 100.</p></li>
+<li><p><strong>value</strong>: Determines slider's initial value. Defaults to <code>min</code>.</p></li>
+<li><p><strong>backgroundColor</strong>: Determines slider background (unfilled) color. Defaults to <code>#ccc</code> (a light gray).</p></li>
+<li><p><strong>handleColor</strong>: Determines the handle background color. Defaults to <code>#bbb</code> (a gray).</p></li>
+<li><p><strong>handleSelectedColor</strong>: Determines the handle background color when the slider is active. Defaults to white.</p></li>
+<li><p><strong>fillColor</strong>: Determines the background color of the slider to the left of the handle. Defaults to blue.</p></li>
+<li><p><strong>thickness</strong>: Determines the girth of the slider bar. Must be a positive integer representing the number of pixels of thickness. Defaults to 20.</p></li>
+<li><p><strong>slideLength</strong>: Determines the length of the slider bar. Must be a positive integer representing the number of pixels across. Defaults to 200.</p></li>
+<li><p><strong>handleRadius</strong>: Determines the size of the handle (which is circular). Must be a positive integer. Defaults to <code>thickness</code>.</p></li>
+<li><p><strong>onslidechange</strong>: The handler function to call whenever the slider is moved. Must be a function, and the default is the empty function (<code>function() {}</code>).</p></li>
+<li><p><strong>mechanizeTrigger</strong>: The jQuery selector that identifies the object to whose value the slider will be bound. This allows
+you to automate the slider with input from an outside source. If the outside source supplies input that is not valid (input is greater than max,
+less than min, or not a number), the resulting slider value will be clipped to the min/max for the slider. Non-numeric input results in no change.</p></li>
+</ul>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/amullins83" class="avatar"><img src="https://secure.gravatar.com/avatar/c8e28ac3e5849a144937aa74efbc272e?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/amullins83">amullins83</a> maintains <a href="https://github.com/amullins83/simpleSlider">Simpleslider</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/amullins83/simpleSlider/tarball/master" class="tar">tar</a><a href="https://github.com/amullins83/simpleSlider/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
