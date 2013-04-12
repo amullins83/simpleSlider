@@ -134,7 +134,8 @@ $.fn.slider = function(options) {
 			});
 			$fill.css({
 				width: newLeft + $handle.width()/2
-			})
+			});
+			$self.onslidechange(newValue);
 		});
 	}
 	
